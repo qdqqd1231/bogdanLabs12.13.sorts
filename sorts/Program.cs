@@ -23,6 +23,8 @@ namespace sorts
                 }
                 step /= 2;
             }
+            for (int i = 0; i < Array.Length; i++)
+                Console.Write(Array[i] + " ");
         }
         public static void BubbleSort(int[] arr)
         {
@@ -59,7 +61,9 @@ namespace sorts
             temp = Array[marker];
             Array[marker] = Array[end];
             Array[end] = temp;
+           
             return marker;
+            
         }
 
         public static void QuickSort(int[] Array, int start, int end)
@@ -71,6 +75,7 @@ namespace sorts
             int pivot = Partition(Array, start, end);
             QuickSort(Array, start, pivot - 1);
             QuickSort(Array, pivot + 1, end);
+            
         }
         public static void InsertionSort(int[] array)
         {
@@ -85,6 +90,8 @@ namespace sorts
                 }
                 array[j] = cur;
             }
+            for (int i = 0; i < array.Length; i++)
+                Console.Write(array[i] + " ");
         }
         public static void SelectionSort(int[] Array)
         {
@@ -103,6 +110,9 @@ namespace sorts
                 Array[min] = dummy;
                 min = i;
             }
+            for (int i = 0; i < Array.Length; i++)
+                Console.Write(Array[i] + " ");
+            Console.WriteLine();
         }
 
         static void Main(string[] args)
@@ -110,12 +120,20 @@ namespace sorts
             int[] arr = { 800, 11, 50, 771, 649, 770, 240, 9 };
             Console.WriteLine("BubbleSort:");
             BubbleSort(arr);
+            Console.WriteLine();
             Console.WriteLine("Shell sort :");
             ShellSort(arr);
+            Console.WriteLine();
             Console.WriteLine("quick sort: ");
-            QuickSort(arr, 0, 7);
+            QuickSort(arr, 0, arr.Length-1);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"{arr[i]} ");
+            }   
+            Console.WriteLine();
             Console.WriteLine("selection sort :");
             SelectionSort(arr);
+            Console.WriteLine();
             Console.WriteLine("insertion sort");
             InsertionSort(arr);
         }
