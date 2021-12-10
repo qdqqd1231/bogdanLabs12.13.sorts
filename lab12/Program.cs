@@ -36,10 +36,14 @@ namespace lab12
             Console.WriteLine(); ;
 
             Console.WriteLine("HomeTask 12.2");
-            Array<Book> library = new Array<Book>();
-            library.Add(new Book("Технический анализ", "Джек Швагер", "Альпина Паблишер"));
-            library.Add(new Book("Зональный трейдинг", "Марк Дуглас", "Альпина паблишер"));
-            library.Sort(Array<Book>.byName);
+            Library.books.Add(new Book("Технический анализ", "Джек Швагер", "Альпина Паблишер"));
+            Library.books.Add(new Book("Зональный трейдинг", "Марк Дуглас", "Ельпина паблишер"));
+            var sortedByName = Library.books.OrderBy(Book => Book.name);
+            Console.WriteLine("Sorted by names::");
+            foreach (Book book in sortedByName)
+            {
+                Console.WriteLine($" {book.name}, {book.author}, {book.publisher}");
+            }
 
         }
     }
