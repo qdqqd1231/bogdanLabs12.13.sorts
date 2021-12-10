@@ -17,13 +17,14 @@ namespace lab12
             Console.WriteLine("exercise 12.2");
             Rational r = new Rational(3,12);
             Console.WriteLine(r);
-            Rational r1 = new Rational(11, 4);
+            Rational r1 = new Rational(1, 4);
             Console.WriteLine(r1);
             Rational r2 = r - r1;
             Console.WriteLine("вычитание-->  " + r2);
             r2 = r + r1;
             Console.WriteLine("сложение-->  "+r2);
-            
+            Console.Write("== -->");
+            Console.WriteLine((r1==r2)+"\n");
 
 
             Console.WriteLine("HomeTask 12.1");
@@ -33,6 +34,9 @@ namespace lab12
             Console.WriteLine(c2);
             Console.WriteLine($"сложение{c1+c2}");
             Console.WriteLine($"умножение{c1*c2}");
+            Console.Write("== -->");
+            Console.WriteLine((c1 == c2) + "\n");
+
             Console.WriteLine(); ;
 
             Console.WriteLine("HomeTask 12.2");
@@ -40,7 +44,8 @@ namespace lab12
             Library.books.Add(new Book("Зональный трейдинг", "Марк Дуглас", "Ельпина паблишер"));
             Library.byName();
             Library.byAuthor();
-            Library.byPublisher();
+            Library.byPublisher(); 
+
         }
     }
 }

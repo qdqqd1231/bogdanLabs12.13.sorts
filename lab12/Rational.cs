@@ -7,26 +7,24 @@ namespace lab12
         //числитель и знаменатель
         public int numerator { get; set; }
         public int denominator { get; set; }
-        private static int NOZ(int[] maxmin)
+        private static int NOD(int a, int b)
         {
-            Array.Sort(maxmin);
-            if (maxmin[1] % maxmin[0] == 0)
+            if (b < 0)
+                b = -b;
+            if (a < 0)
+                a = -a;
+            while(b>0)
             {
-                return maxmin[1];
+                int temp = b;
+                b = a % b;
+                a = temp;
             }
-
-            int temp = 0;
-            for (int i = 2; ; i++)
-            {
-                temp = maxmin[1] * i;
-                if (temp % maxmin[0] == 0)
-                {
-                    break;
-                }
-            }
-            return temp;
+            return a;
         }
-
+        public static int NOK(int a, int b)
+        {
+            return Math.Abs(a * b) / NOD(a, b);
+        }
         public Rational(int numerator, int denominator)
         {
             if (denominator <= 0)
@@ -41,12 +39,20 @@ namespace lab12
         }
         public static bool operator ==(Rational x, Rational y)
         {
-            return x.numerator == y.numerator && x.denominator == y.denominator;
+            int nok = NOK(x.denominator, y.denominator);
+            if (x.numerator*(nok/x.denominator) == y.numerator*(nok/y.denominator))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public static bool operator !=(Rational x, Rational y)
         {
-            return !(x.numerator == y.numerator && x.denominator == y.denominator);
+            return !(x==y);
         }
 
         public override bool Equals(object obj)
@@ -98,7 +104,14 @@ namespace lab12
 
         public static Rational operator -(Rational x, Rational y)
         {
-            return new Rational(x.numerator * y.denominator - x.denominator * y.numerator, x.denominator * y.denominator);
+            if (x.numerator * y.denominator - x.denominator * y.numerator == 0)
+            {
+                return new Rational(0, 0);
+            }
+            else
+            {
+                return new Rational(x.numerator * y.denominator - x.denominator * y.numerator, x.denominator * y.denominator);
+            }
         }
 
         public static Rational operator *(Rational x, Rational y)
